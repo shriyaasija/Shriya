@@ -5,11 +5,21 @@ import "98.css"
 import Win from "../../components/Win/Win"
 import styles from "@/styles/Home.module.css";
 import DesktopIcon from "../../components/DesktopIcons/DesktopIcon";
-import internet from "../../assets/internet.png"
-import bin from "../../assets/recycling_bin.png"
+import mycomp from "../../assets/mycomp.png";
+import internet from "../../assets/internet.png";
+import bin from "../../assets/recycling_bin.png";
+import clipboard from "../../assets/clipboard.png";
+import github from "../../assets/github.png";
+import cmd from "../../assets/cmd.png";
+import solitaire from "../../assets/solitaire.png";
+import linkedin from "../../assets/linkedin.png";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+    const iconClicked = () => {
+        console.log("Icon clicked");
+    };
+
     return (
         <>
             <Head>
@@ -19,8 +29,12 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <DesktopIcon title="My Comp" img={internet} />
-                <DesktopIcon title="Recycling Bin" img={bin} />
+                <DesktopIcon doubleClick={iconClicked} title="My Comp" img={internet} />
+                <DesktopIcon doubleClick={iconClicked} title="Recycling Bin" img={bin} />
+                <DesktopIcon doubleClick={iconClicked} title="Resume" img={clipboard} />
+                <DesktopIcon doubleClick={iconClicked} title="Fun Stuff" img={solitaire} />
+                <DesktopIcon doubleClick={iconClicked} title="GitHub" img={github} />
+                <DesktopIcon doubleClick={iconClicked} title="LinkedIn" img={linkedin} />
                 <Win title="Welcome!" width="500" body="to my website!" />
             </main>
             <StartBar />
