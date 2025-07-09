@@ -1,8 +1,9 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import StartBar from "../../components/StartBar";
+import StartBar from "../../components/StartBar/StartBar";
 import "98.css"
+import Win from "../../components/Win/Win"
+import styles from "@/styles/Home.module.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -15,21 +16,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <div style={{ width: 300 }} className="window">
-                    <div className="title-bar">
-                        <div className="title-bar-text">Counter</div>
-                        <div className="title-bar-controls">
-                            <button aria-label="Minimize" />
-                            <button aria-label="Maximize" />
-                            <button aria-label="Close" />
-                        </div>
-                    </div>
-
-                    <div className="window-body">
-                        <p style={{ textAlign: "center"}}>Hello!</p>
-                        <div className="field-row" style={{ justifyContent: "center" }}></div>
-                    </div>
-                </div>
+                <Win title="Welcome!" width="500" body="to my website!" />
             </main>
             <StartBar />
         </>
