@@ -4,6 +4,9 @@ import StartBar from "../../components/StartBar/StartBar";
 import "98.css"
 import Win from "../../components/Win/Win"
 import styles from "@/styles/Home.module.css";
+import DesktopIcon from "../../components/DesktopIcons/DesktopIcon";
+import internet from "../../assets/internet.png"
+import bin from "../../assets/recycling_bin.png"
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -16,6 +19,8 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
+                <DesktopIcon title="My Comp" img={internet} />
+                <DesktopIcon title="Recycling Bin" img={bin} />
                 <Win title="Welcome!" width="500" body="to my website!" />
             </main>
             <StartBar />
