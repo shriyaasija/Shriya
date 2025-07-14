@@ -6,6 +6,7 @@ const renderSwitch = (type: Number) => {};
 
 const StartMenuItem = (props: {
     title: string;
+    subtitle?: string;
     icon: StaticImageData;
     type: number;
     expanded?: boolean;
@@ -13,7 +14,10 @@ const StartMenuItem = (props: {
     return props.type === 1 ? (
         <div className={styles.Item}>
             <img src={props.icon.src} className={styles.leftIcon} />
-            <p className={styles.TextONE}>{props.title}</p>
+            <div style={{ display: "flex", flexDirection: "column"}}>
+                <p className={styles.TextONE}>{props.title}</p>
+                <p className={styles.subtitleONE}>{props.subtitle}</p>
+            </div>
         </div>
     ) : props.type === 2 ? (
         <div className={styles.Item}>

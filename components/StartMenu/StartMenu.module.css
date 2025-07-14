@@ -2,8 +2,8 @@
     position: absolute;
     left: 0px;
     bottom: 30px;
-    width: 420px;
-    height: 530px;
+    width: 440px;
+    height: 600px;
     z-index: -1;
     display: flex;
     flex-direction: column;
@@ -48,12 +48,16 @@
     flex-direction: row;
     width: 100%;
     background-color: white;
-    height: 77%;
+    height: 79%;
 }
 
 .menubtmbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
     width: 100%;
-    height: 10%;
+    height: 8%;
     background: linear-gradient(
         rgb(66, 130, 214) 0%,
         rgb(59, 133, 224) 3%,
@@ -73,6 +77,18 @@
     );
 }
 
+.greyhr {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        #d2d2d2 50%,
+        transparent 100%
+    );
+    border: 0;
+}
+
 .orangehr {
     width: 100%;
     height: 4px;
@@ -82,6 +98,13 @@
         orange 50%,
         transparent 100%
     );
+}
+
+.whitehr {
+    width: 97%;
+    height: 3px;
+    background: #6fb1f8;
+    border: 0;
 }
 
 .bluehr {
@@ -100,9 +123,13 @@
     width: 50%;
     height: 100%;
     background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .rightmenu {
+    padding: 5px;
     width: 50%;
     height: 100%;
     background-color: #d2e5fa;
@@ -111,4 +138,43 @@
     border-bottom: 0px;
     border-right: 0px;
     border-style: solid;
+}
+
+.allprograms {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    height: 30px;
+    margin: 3px;
+}
+
+.allprograms:hover {
+    color: white;
+    background-color: #2f71cd;
+}
+
+.systemBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 12;
+    color: white;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 5px 0px 5px;
+    cursor: default;
+    height: 30px;
+}
+
+.systemBtn:hover {
+    border-radius: 5px;
+    background-color: #2f71cd;
+}
+
+.systemBtnIcon {
+    height: 24px;
+    border-radius: 3px;
+    margin-right: 3px;
 }
