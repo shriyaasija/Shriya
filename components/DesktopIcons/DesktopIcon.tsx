@@ -28,7 +28,7 @@ const DesktopIcon = (props: {title: string; img: StaticImageData; doubleClick: a
             <div onDoubleClick={props.doubleClick} onClick={HighlightIcon} className={styles.icon} ref={ref}>
                 <div>
                     <div className={selected ? styles.iconimage_selected : styles.iconimage}>
-                        <img style={{ height: "35px" }} src={props.img.src} alt="icon" />
+                        <img style={{ height: "45px" }} src={props.img.src} alt="icon" />
                     </div>
                 </div>
                 <div className={selected ? styles.iconlabel_selected : styles.iconlabel}>

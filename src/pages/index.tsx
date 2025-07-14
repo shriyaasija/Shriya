@@ -8,7 +8,7 @@ import DesktopIcon from "../../components/DesktopIcons/DesktopIcon";
 import mycomp from "../../assets/mycomp.png";
 import internet from "../../assets/internet.png";
 import bin from "../../assets/recycling_bin.png";
-import clipboard from "../../assets/clipboard.png";
+import pdf from "../../assets/pdf.png";
 import github from "../../assets/github.png";
 import cmd from "../../assets/cmd.png";
 import solitaire from "../../assets/solitaire.png";
@@ -31,7 +31,7 @@ export default function Home() {
             <main className={styles.main}>
                 <DesktopIcon doubleClick={iconClicked} title="My Comp" img={internet} />
                 <DesktopIcon doubleClick={iconClicked} title="Recycling Bin" img={bin} />
-                <DesktopIcon doubleClick={iconClicked} title="Resume" img={clipboard} />
+                <DesktopIcon doubleClick={iconClicked} title="Resume" img={pdf} />
                 <DesktopIcon doubleClick={iconClicked} title="Fun Stuff" img={solitaire} />
                 <DesktopIcon doubleClick={iconClicked} title="GitHub" img={github} />
                 <DesktopIcon doubleClick={iconClicked} title="LinkedIn" img={linkedin} />
