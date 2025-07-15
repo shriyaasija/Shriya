@@ -2,7 +2,6 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import StartBar from "../../components/StartBar/StartBar";
 import "98.css"
-import Win from "../../components/Win/Win"
 import styles from "@/styles/Home.module.css";
 import DesktopIcon from "../../components/DesktopIcons/DesktopIcon";
 import mycomp from "../../assets/mycomp.png";
@@ -13,6 +12,9 @@ import github from "../../assets/github.png";
 import cmd from "../../assets/cmd.png";
 import solitaire from "../../assets/solitaire.png";
 import linkedin from "../../assets/linkedin.png";
+import ErrorForm from "../../components/ErrorForm/ErrorForm";
+import Win from "../../components/Win/Win";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -28,6 +30,10 @@ export default function Home() {
         window.open("https://www.linkedin.com/in/shriya-asija/", "_blank", "noreferrer");
     };
 
+    const handleOpenResume = () => {
+        window.open("./resume.pdf");
+    }
+
     return (
         <>
             <Head>
@@ -39,51 +45,12 @@ export default function Home() {
             <main className={styles.main}>
                 <DesktopIcon doubleClick={iconClicked} title="My Comp" img={internet} />
                 <DesktopIcon doubleClick={iconClicked} title="Recycling Bin" img={bin} />
-                <DesktopIcon doubleClick={iconClicked} title="Resume" img={pdf} />
+                <DesktopIcon doubleClick={handleOpenResume} title="Resume" img={pdf} />
                 <DesktopIcon doubleClick={iconClicked} title="Fun Stuff" img={solitaire} />
                 <DesktopIcon doubleClick={handleOpenGitHub} title="GitHub" img={github} />
                 <DesktopIcon doubleClick={handleOpenLinkedin} title="LinkedIn" img={linkedin} />
-                <Win title="welcome!" width="500">
-                    <h3>how to navigate?</h3>
-                    <menu role="tablist">
-                        <button aria-selected="true" aria-controls="music">music</button>
-                        <button aria-controls="dogs">Dogs</button>
-                        <button aria-controls="food">Food</button>
-                    </menu>
-                    <article role="tabpanel" id="music">
-                        <p>set your listening preferences</p>
-                        <fieldset>
-                            <legend>today's mood</legend>
-                            <div className="field-row">
-                                <input id="radio29" type="radio" name="fieldset-example2" />
-                                <label htmlFor="radio29">Kendrick Lamar</label>
-                            </div>
-                             <div className="field-row">
-                                <input id="radio30" type="radio" name="fieldset-example2" />
-                                <label htmlFor="radio30">Taylor Swift</label>
-                            </div>
-                             <div className="field-row">
-                                <input id="radio31" type="radio" name="fieldset-example2" />
-                                <label htmlFor="radio31">Artic Monkeys</label>
-                            </div>
-                             <div className="field-row">
-                                <input id="radio32" type="radio" name="fieldset-example2" />
-                                <label htmlFor="radio32">EN.V</label>
-                            </div>
-                        </fieldset>
-                        <section className="field-row">
-                            <button>Reset alarm...</button>
-                            <label>click for attention</label>
-                        </section>
-                    </article>
-                    <article role="tabpanel" hidden id="dogs">
-                        <p>OK</p>
-                    </article>
-                    <article role="tabpanel" hidden id="food">
-                        <p>create content for each tab using an {" "}
-                            <code>article</code> tag.
-                        </p>
-                    </article>
+                <Win title="about me" width={"500"}>
+                    hi
                 </Win>
             </main>
             <StartBar />
