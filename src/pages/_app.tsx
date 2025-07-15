@@ -5,12 +5,12 @@ import localFont from "next/font/local"
 const Tahoma = localFont({
     src: [
         {
-            path: "../../fonts/Tahoma Bold V1.woff",
+            path: "../../fonts/Tahoma BoldV1.woff",
             weight: "700",
             style: "bold",
         },
         {
-            path: "../../fonts/Tahoma V1.woff",
+            path: "../../fonts/TahomaV1.woff",
             weight: "400",
             style: "normal",
         },

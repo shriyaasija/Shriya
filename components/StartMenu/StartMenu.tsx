@@ -24,6 +24,19 @@ import shutdown from "../../assets/shutdown.png";
 import defaultprog from "../../assets/defaultprog.png";
 import printerfax from "../../assets/printerfax.png";
 
+const handleOpenGitHub = () => {
+  window.open("https://github.com/shriyaasija", "_blank", "noreferrer");
+};
+
+const handleOpenResume = () => {
+  const pdfUrl = "./Resume.pdf";
+  window.open(pdfUrl, "_blank");
+};
+
+const handleOpenLinkedin = () => {
+  window.open("https://www.linkedin.com/in/shriya-asija/", "_blank", "noreferrer");
+};
+
 const StartMenu = () => {
     return (
     <div className={styles.startmenu}>
@@ -57,9 +70,9 @@ const StartMenu = () => {
             <StartMenuItem title="Internet" subtitle="Internet Explorer" icon={ie} type={1} />
             <StartMenuItem title="Email" subtitle="Outlook" icon={outlook} type={1} />
             <hr className={styles.greyhr} />
-            <StartMenuItem title="Resume" icon={pdf} type={2} />
-            <StartMenuItem title="Github" icon={github} type={2} />
-            <StartMenuItem title="Linkedin" icon={linkedin} type={2} />
+            <StartMenuItem onClick={handleOpenResume} title="Resume" icon={pdf} type={2} />
+            <StartMenuItem onClick={handleOpenGitHub} title="Github" icon={github} type={2} />
+            <StartMenuItem onClick={handleOpenLinkedin} title="Linkedin" icon={linkedin} type={2} />
             <StartMenuItem title="My Work" icon={cmd} type={2} />
             <StartMenuItem title="My Blog" icon={msn} type={2} />
             <StartMenuItem title="Paint" icon={paint} type={2} />

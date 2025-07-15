@@ -1,6 +1,6 @@
 import Draggable from "react-draggable"
 
-const Win = (props: { title: string; width: string; body: string}) => {
+const Win = (props: { title: string; width: string; children: any}) => {
     return (
         <Draggable bounds="parent">
             <div className="window" style={{ width: props.width + "px", zIndex: "1" }}>
@@ -13,8 +13,7 @@ const Win = (props: { title: string; width: string; body: string}) => {
                     </div>
                 </div>
                 <div className="window-body">
-                    <progress max="100" value="30"></progress>
-                    <p>{props.body}</p>
+                    {props.children}
                 </div>
             </div>
         </Draggable>
