@@ -18,11 +18,21 @@ import store from "@/redux/store";
 import { AppDirectory } from "@/appID";
 import { Tab } from "@/types";
 import { addTab } from "@/redux/tabSlice";
+import { useSelector } from "react-redux";
+
+interface RootState {
+    tab: {
+        tray: Tab[];
+        id: number;
+    };
+}
 
 export default function Home() {
+    const Tabs = useSelector((state: RootState) => state.tab.tray);
+    const currTabID = useSelector((state: RootState) => state.tab.id);
+
     const handleRunApp = (e: number) => {
-        const newTab = AppDirectory.get(e) as Tab;
-        console.log("Calling App: " + newTab.title);
+        const newTab = {...AppDirectory.get(e), id: currTabID};
         store.dispatch(addTab(newTab));
     }
 
@@ -58,9 +68,13 @@ export default function Home() {
                 <DesktopIcon appID={5} doubleClick={handleOpenGitHub} title="GitHub" img={github} />
                 <DesktopIcon appID={6} doubleClick={iconClicked} title="Work" img={cmd} />
                 <DesktopIcon appID={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
-                <Win title={"Work"} width={"500"}>
-                    hi
-                </Win>
+                {Tabs.map((tab, index) => {
+                    return (
+                        <Win key={index} id={tab.id} title={tab.title} width={"500"} icon={tab.Icon}>
+                            {"Tab index: " + index}
+                        </Win>
+                    );
+                })}
             </main>
             <StartBar/>
         </>

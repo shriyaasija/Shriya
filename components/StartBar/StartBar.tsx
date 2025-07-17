@@ -93,7 +93,7 @@ const StartBar = () => {
                     {startMenuOpen && <StartMenu menuControl={setStartMenuOpen}/>}
                 </div>
                 <div className={styles.tabbar}>
-                    {Tabs.map((_item, index) => renderTabs(_item.title, _item.Icon, index))}
+                    {Array.from(Tabs).map((_item, index) => renderTabs(_item.title, _item.Icon, index))}
                 </div>
                 <div className={styles.icontray}>
                     <div className={styles.iconrow}>

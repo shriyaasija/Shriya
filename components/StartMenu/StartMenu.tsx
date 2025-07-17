@@ -28,9 +28,16 @@ import { addTab } from "@/redux/tabSlice";
 import { Tab } from "@/types";
 import store from "@/redux/store";
 import React from "react";
-
+import { useSelector } from "react-redux";
 interface StartMenuProps {
   menuControl: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface RootState {
+  tab: {
+    tray: Tab[];
+    id: number;
+  };
 }
 
 const StartMenu = ({ menuControl }: StartMenuProps) => {
@@ -46,10 +53,11 @@ const StartMenu = ({ menuControl }: StartMenuProps) => {
       window.open("https://www.linkedin.com/in/shriya-asija/", "_blank", "noreferrer");
     };
 
+    const currTabID = useSelector((state: RootState) => state.tab.id);
+
     const handleRunApp = (e: number) => {
       menuControl(false);
-      const newTab = AppDirectory.get(e) as Tab;
-      console.log("Calling App: " + newTab.title);
+      const newTab = { ...AppDirectory.get(e), id: currTabID };
       store.dispatch(addTab(newTab));
     };
 

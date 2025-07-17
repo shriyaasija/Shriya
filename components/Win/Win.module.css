@@ -58,8 +58,9 @@
     align-items: center;
     font-size: 14px;
     font-weight: 700;
+    font-family: Tahoma;
     text-shadow: rgb(0 0 0) 1px 1px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .titlecontrols {
@@ -127,6 +128,10 @@
     width: 25px;
     height: 25px;
     margin-right: 1px;
+}
+
+.icon {
+    margin-left: 8px;
 }
 
 .close:hover {
