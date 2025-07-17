@@ -43,12 +43,13 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <DesktopIcon doubleClick={iconClicked} title="My Comp" img={internet} />
-                <DesktopIcon doubleClick={iconClicked} title="Recycling Bin" img={bin} />
-                <DesktopIcon doubleClick={handleOpenResume} title="Resume" img={pdf} />
-                <DesktopIcon doubleClick={iconClicked} title="Fun Stuff" img={solitaire} />
-                <DesktopIcon doubleClick={handleOpenGitHub} title="GitHub" img={github} />
-                <DesktopIcon doubleClick={handleOpenLinkedin} title="LinkedIn" img={linkedin} />
+                <DesktopIcon id={1} doubleClick={iconClicked} title="My Comp" img={internet} />
+                <DesktopIcon id={2} doubleClick={iconClicked} title="Recycling Bin" img={bin} />
+                <DesktopIcon id={3} doubleClick={handleOpenResume} title="Resume" img={pdf} />
+                <DesktopIcon id={4} doubleClick={handleOpenLinkedin} title="LinkedIn" img={linkedin} />
+                <DesktopIcon id={5} doubleClick={handleOpenGitHub} title="GitHub" img={github} />
+                <DesktopIcon id={6} doubleClick={iconClicked} title="Work" img={cmd} />
+                <DesktopIcon id={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
                 <Win title="about me" width={"500"}>
                     hi
                 </Win>

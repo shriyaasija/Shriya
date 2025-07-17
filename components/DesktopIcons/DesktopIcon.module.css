@@ -1,6 +1,6 @@
 .icon {
     display: inline-block;
-    position: relative;
+    position: absolute;
     width: 80px;
     height: 80px;
     background-color: transparent;
@@ -17,6 +17,16 @@
     text-align: center;
 }
 
+.iconimage_selected {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    right: 5px;
+    text-align: center;
+    filter: drop-shadow(0 0 blue);
+    opacity: 0.8;
+}
+
 .iconimage img .iconimage_selected {
     width: 40px;
     height: 40px;
@@ -25,6 +35,7 @@
 .iconlabel {
     position: absolute;
     bottom: 0;
+    top: 48px;
     left: 0;
     right: 0;
     height: 15px;
@@ -39,6 +50,7 @@
 .iconlabel_selected {
     position: absolute;
     bottom: 0;
+    top: 48px;
     left: 0;
     right: 0;
     height: 15px;
@@ -49,17 +61,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     background-color: rgb(11, 97, 255);
-}
-
-.iconimage_selected {
-    position: absolute;
-    top: 18px;
-    left: 5px;
-    right: 5px;
-    bottom: 10px;
-    text-align: center;
-    filter: drop-shadow(0 0 blue);
-    opacity: 0.8;
 }
 
 .icon_overlay {
