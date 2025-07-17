@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useImperativeHandle } from "react";
+import React, { useEffect, useRef, useState, useImperativeHandle } from "react";
 import styles from "./StartBar.module.css";
 import greenshield from "../../assets/green_shield.png";
 import sound from "../../assets/sound.png";
@@ -6,18 +6,9 @@ import internet from "../../assets/internet.png";
 import removabledevice from "../../assets/removabledevice.png";
 import StartMenu from "../StartMenu/StartMenu";
 import TrayTab from "../TrayTab/TrayTab";
-import cmd from "../../assets/cmd.png";
-import mycomp from "../../assets/mycomp.png";
 import { StaticImageData } from "next/image";
-import React from "react";
 import { Tab } from "../../src/types";
-import { AppDirectory } from "@/appID";
-
-const TestTabs: Array<Tab> = [
-  { title: "Work", Icon: cmd },
-  { title: "Computer", Icon: mycomp },
-  { title: "Documents", Icon: cmd },
-];
+import { useSelector } from "react-redux";
 
 const getTime = () => {
     const date = new Date();
@@ -36,24 +27,22 @@ const getTime = () => {
     return `${hour}:${formattedMin} ${hourPostFix}`;
 };
 
-interface props {
-    tabList: number[];
+// interface props {
+//     tabList: number[];
+// }
+
+interface RootState {
+    tab: {
+        tray: Tab[];
+    };
 }
 
-const StartBar = ({ tabList }: props) => {
+const StartBar = () => {
     const [time, setTime] = useState(getTime());
     const ref = useRef<HTMLDivElement>(null);
     const [startMenuOpen, setStartMenuOpen] = useState(false);
     const [focusedTab, setFocusedTab] = useState<number | null>(null);
-    const [Tabs, setTabs] = useState<Tab[]>([]);
-
-    useEffect(() => {
-        console.log("tabs", Tabs);
-        if(AppDirectory.get(tabList[tabList.length - 1]) !== undefined) {
-            const newTab = AppDirectory.get(tabList[tabList.length - 1]) as Tab;
-            setTabs([...Tabs, newTab])
-        }
-    }, [tabList]);
+    const Tabs = useSelector((state: RootState) => state.tab.tray);
 
     const handleTabFocus = (tabName: number) => {
         if (focusedTab === tabName) {
@@ -100,8 +89,8 @@ const StartBar = ({ tabList }: props) => {
        <div style={{ zIndex: 0 }}>
             <div className={styles.bluebar}>
                 <div ref={ref}>
-                    <div onClick={handleOpenStartMenu} className={styles.startbtn}></div>
-                            {startMenuOpen && <StartMenu />}
+                    <div onClick={handleOpenStartMenu} className={startMenuOpen ? styles.startbtn_active : styles.startbtn}></div>
+                    {startMenuOpen && <StartMenu menuControl={setStartMenuOpen}/>}
                 </div>
                 <div className={styles.tabbar}>
                     {Tabs.map((_item, index) => renderTabs(_item.title, _item.Icon, index))}

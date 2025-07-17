@@ -23,20 +23,36 @@ import logoff from "../../assets/logoff.png";
 import shutdown from "../../assets/shutdown.png";
 import defaultprog from "../../assets/defaultprog.png";
 import printerfax from "../../assets/printerfax.png";
+import { AppDirectory } from "@/appID";
+import { addTab } from "@/redux/tabSlice";
+import { Tab } from "@/types";
+import store from "@/redux/store";
+import React from "react";
 
-const handleOpenGitHub = () => {
-  window.open("https://github.com/shriyaasija", "_blank", "noreferrer");
-};
+interface StartMenuProps {
+  menuControl: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const handleOpenResume = () => {
-  window.open("/resume.pdf", "_blank");
-};
+const StartMenu = ({ menuControl }: StartMenuProps) => {
+    const handleOpenGitHub = () => {
+      window.open("https://github.com/shriyaasija", "_blank", "noreferrer");
+    };
 
-const handleOpenLinkedin = () => {
-  window.open("https://www.linkedin.com/in/shriya-asija/", "_blank", "noreferrer");
-};
+    const handleOpenResume = () => {
+      window.open("/resume.pdf", "_blank");
+    };
 
-const StartMenu = () => {
+    const handleOpenLinkedIn = () => {
+      window.open("https://www.linkedin.com/in/shriya-asija/", "_blank", "noreferrer");
+    };
+
+    const handleRunApp = (e: number) => {
+      menuControl(false);
+      const newTab = AppDirectory.get(e) as Tab;
+      console.log("Calling App: " + newTab.title);
+      store.dispatch(addTab(newTab));
+    };
+
     return (
     <div className={styles.startmenu}>
       <hr className={styles.whitehr} />
@@ -71,8 +87,8 @@ const StartMenu = () => {
             <hr className={styles.greyhr} />
             <StartMenuItem onClick={handleOpenResume} title="Resume" icon={pdf} type={2} />
             <StartMenuItem onClick={handleOpenGitHub} title="Github" icon={github} type={2} />
-            <StartMenuItem onClick={handleOpenLinkedin} title="Linkedin" icon={linkedin} type={2} />
-            <StartMenuItem title="My Work" icon={cmd} type={2} />
+            <StartMenuItem onClick={handleOpenLinkedIn} title="Linkedin" icon={linkedin} type={2} />
+            <StartMenuItem title="My Work" onClick={() => handleRunApp(6)} icon={cmd} type={2} />
             <StartMenuItem title="My Blog" icon={msn} type={2} />
             <StartMenuItem title="Paint" icon={paint} type={2} />
           </div>

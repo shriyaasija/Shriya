@@ -13,15 +13,18 @@ import cmd from "../../assets/cmd.png";
 import solitaire from "../../assets/solitaire.png";
 import linkedin from "../../assets/linkedin.png";
 import Win from "../../components/Win/Win";
-import { useCallback, useState } from "react";
-import { Tab } from "../../src/types";
+import { useState } from "react";
+import store from "@/redux/store";
+import { AppDirectory } from "@/appID";
+import { Tab } from "@/types";
+import { addTab } from "@/redux/tabSlice";
 
 export default function Home() {
-    const [TabsID, setTabsID] = useState([] as number[]);
-
-    const handleRunApp = (appID: number) => {
-        setTabsID((prevTabs) => [...prevTabs, appID]);
-    };
+    const handleRunApp = (e: number) => {
+        const newTab = AppDirectory.get(e) as Tab;
+        console.log("Calling App: " + newTab.title);
+        store.dispatch(addTab(newTab));
+    }
 
     const iconClicked = () => {
         console.log("Icon clicked");
@@ -59,7 +62,7 @@ export default function Home() {
                     hi
                 </Win>
             </main>
-            <StartBar tabList={TabsID} />
+            <StartBar/>
         </>
     );
 }
