@@ -18,7 +18,6 @@ const DesktopIcon = (props: {title: string; img: StaticImageData; id: number; do
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            console.log("click out")
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);

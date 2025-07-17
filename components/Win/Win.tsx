@@ -4,9 +4,8 @@ import styles from "./Win.module.css";
 import WinToolBar from "../WinToolBar/WinToolBar";
 
 const Win = (props: { title: string; width: string; children: ReactNode}) => {
-    console.log("rendering winform");
     const [isMaximised, setMaximised] = useState(false);
-     const [isMinimised, setMinimised] = useState(false);
+    const [isMinimised, setMinimised] = useState(false);
     const [isClose, setClose] = useState(false);
     const [currX, setX] = useState(0);
     const [currY, setY] = useState(0);
@@ -52,7 +51,7 @@ const Win = (props: { title: string; width: string; children: ReactNode}) => {
                     </div>
                     <div className={styles.titlecontrols}>
                         <div onClick={handleMinimise} className={styles.minimise}/>
-                        <div onClick={handleMaximise} className={styles.maximise} />
+                        <div onClick={handleMaximise} className={isMaximised ? styles.resize : styles.maximise} />
                         <div onClick={handleClose} className={styles.close} />
                     </div>
                 </div>

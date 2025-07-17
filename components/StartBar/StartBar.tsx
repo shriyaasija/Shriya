@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./StartBar.module.css";
-import greenshield from "../../assets/green_shield.png"
-import sound from "../../assets/sound.png"
-import internet from "../../assets/internet.png"
-import removabledevice from "../../assets/removabledevice.png"
-import StartMenu from "../StartMenu/StartMenu"
+import greenshield from "../../assets/green_shield.png";
+import sound from "../../assets/sound.png";
+import internet from "../../assets/internet.png";
+import removabledevice from "../../assets/removabledevice.png";
+import StartMenu from "../StartMenu/StartMenu";
+import TrayTab from "../TrayTab/TrayTab";
 
 const getTime = () => {
     const date = new Date();
@@ -65,21 +66,21 @@ const StartBar = () => {
     return (
        <div style={{ zIndex: 0 }}>
             <div className={styles.bluebar}>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    <div ref={ref}>
-                        <div onClick={handleOpenStartMenu} className={styles.startbtn}>
+                <div ref={ref}>
+                    <div onClick={handleOpenStartMenu} className={styles.startbtn}></div>
                             {startMenuOpen && <StartMenu />}
-                        </div>
-                    </div>
-                    <div className={styles.tabbar}></div>
                 </div>
-                
+                <div className={styles.tabbar}>
+                    <TrayTab />
+                </div>
                 <div className={styles.icontray}>
                     <div className={styles.iconrow}>
-                        <img style={{ margin: "0px 3px 0px 3px"}} height={5} src={greenshield.src} alt="Icon 1" />
-                        <img style={{ margin: "0px 3px 0px 3px"}} height={5} src={internet.src} alt="Icon 2" />
-                        <img style={{ margin: "0px 3px 0px 3px"}} height={5} src={sound.src} alt="Icon 3" />
-                        <img style={{ margin: "0px 3px 0px 3px"}} height={5} src={removabledevice.src} alt="Icon 4" />
+                        <div className={styles.icon}>
+                            <img style={{ margin: "0px 3px 0px 3px"}} height={5} src={greenshield.src} alt="Icon 1" />
+                            <img style={{ margin: "0px 3px 0px 3px"}} height={5} src={internet.src} alt="Icon 2" />
+                            <img style={{ margin: "0px 3px 0px 3px"}} height={5} src={sound.src} alt="Icon 3" />
+                            <img style={{ margin: "0px 3px 0px 3px"}} height={5} src={removabledevice.src} alt="Icon 4" />
+                        </div>
                     </div>
                     <div style={{ color: "white", fontSize: "11px", fontWeight: "normal" }} className="time-display">{time}</div>
                 </div>
