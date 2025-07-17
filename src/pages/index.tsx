@@ -50,7 +50,7 @@ export default function Home() {
                 <DesktopIcon id={5} doubleClick={handleOpenGitHub} title="GitHub" img={github} />
                 <DesktopIcon id={6} doubleClick={iconClicked} title="Work" img={cmd} />
                 <DesktopIcon id={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
-                <Win title="about me" width={"500"}>
+                <Win title={"Work"} width={"500"}>
                     hi
                 </Win>
             </main>
