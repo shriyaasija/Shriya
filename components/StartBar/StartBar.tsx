@@ -6,6 +6,21 @@ import internet from "../../assets/internet.png";
 import removabledevice from "../../assets/removabledevice.png";
 import StartMenu from "../StartMenu/StartMenu";
 import TrayTab from "../TrayTab/TrayTab";
+import cmd from "../../assets/cmd.png";
+import mycomp from "../../assets/mycomp.png";
+import { StaticImageData } from "next/image";
+
+type Tab = {
+    title: string;
+    Icon: StaticImageData;
+};
+
+const TestTabs: Array<Tab> = [
+  { title: "Work", Icon: cmd },
+  { title: "Computer", Icon: mycomp },
+  { title: "Documents", Icon: cmd },
+  { title: "Network Places", Icon: cmd },
+];
 
 const getTime = () => {
     const date = new Date();
@@ -32,9 +47,24 @@ const TrayItem = {
 
 const StartBar = () => {
     const [time, setTime] = useState(getTime());
-    const [startTray, setStartTray] = useState(TrayItem);
     const ref = useRef<HTMLDivElement>(null);
     const [startMenuOpen, setStartMenuOpen] = useState(false);
+    const [focusedTab, setFocusedTab] = useState<number | null>(null);
+    const [trayItems, setTrayItems] = useState([]);
+
+    const handleTabFocus = (tabName: number) => {
+        if (focusedTab === tabName) {
+            setFocusedTab(null);
+            return;
+        }
+        setFocusedTab(tabName);
+    };
+
+    const renderTabs = (title: String, Icon: StaticImageData, index: number) => {
+        return (
+            <TrayTab title={title} Icon={Icon} isFocused={index === focusedTab} onFocus={() => handleTabFocus(index)}/>
+        );
+    };
     
     const handleOpenStartMenu = () => {
         setStartMenuOpen(!startMenuOpen);
@@ -71,7 +101,7 @@ const StartBar = () => {
                             {startMenuOpen && <StartMenu />}
                 </div>
                 <div className={styles.tabbar}>
-                    <TrayTab />
+                    {TestTabs.map((_item, index) => renderTabs(_item.title, _item.Icon, index))}
                 </div>
                 <div className={styles.icontray}>
                     <div className={styles.iconrow}>
