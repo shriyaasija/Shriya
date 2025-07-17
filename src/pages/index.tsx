@@ -12,12 +12,17 @@ import github from "../../assets/github.png";
 import cmd from "../../assets/cmd.png";
 import solitaire from "../../assets/solitaire.png";
 import linkedin from "../../assets/linkedin.png";
-import ErrorForm from "../../components/ErrorForm/ErrorForm";
 import Win from "../../components/Win/Win";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useCallback, useState } from "react";
+import { Tab } from "../../src/types";
 
 export default function Home() {
+    const [TabsID, setTabsID] = useState([] as number[]);
+
+    const handleRunApp = (appID: number) => {
+        setTabsID((prevTabs) => [...prevTabs, appID]);
+    };
+
     const iconClicked = () => {
         console.log("Icon clicked");
     };
@@ -43,18 +48,18 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <DesktopIcon id={1} doubleClick={iconClicked} title="My Comp" img={internet} />
-                <DesktopIcon id={2} doubleClick={iconClicked} title="Recycling Bin" img={bin} />
-                <DesktopIcon id={3} doubleClick={handleOpenResume} title="Resume" img={pdf} />
-                <DesktopIcon id={4} doubleClick={handleOpenLinkedin} title="LinkedIn" img={linkedin} />
-                <DesktopIcon id={5} doubleClick={handleOpenGitHub} title="GitHub" img={github} />
-                <DesktopIcon id={6} doubleClick={iconClicked} title="Work" img={cmd} />
-                <DesktopIcon id={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
+                <DesktopIcon appID={1} doubleClick={iconClicked} title="My Comp" img={internet} />
+                <DesktopIcon appID={2} doubleClick={iconClicked} title="Recycling Bin" img={bin} />
+                <DesktopIcon appID={3} doubleClick={handleOpenResume} title="Resume" img={pdf} />
+                <DesktopIcon appID={4} doubleClick={handleOpenLinkedin} title="LinkedIn" img={linkedin} />
+                <DesktopIcon appID={5} doubleClick={handleOpenGitHub} title="GitHub" img={github} />
+                <DesktopIcon appID={6} doubleClick={iconClicked} title="Work" img={cmd} />
+                <DesktopIcon appID={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
                 <Win title={"Work"} width={"500"}>
                     hi
                 </Win>
             </main>
-            <StartBar />
+            <StartBar tabList={TabsID} />
         </>
     );
 }

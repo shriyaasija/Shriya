@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 import styles from "./DesktopIcon.module.css"
 
-const DesktopIcon = (props: {title: string; img: StaticImageData; id: number; doubleClick: any;}) => {
+const DesktopIcon = (props: {title: string; img: StaticImageData; appID: number; doubleClick: any;}) => {
     const [selected, setSelected] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -23,8 +23,8 @@ const DesktopIcon = (props: {title: string; img: StaticImageData; id: number; do
     }, []);
 
     return (
-        <Draggable bounds="parent">
-            <div style={{ top: props.id * 90 - 40 }} onDoubleClick={props.doubleClick} onClick={HighlightIcon} className={styles.icon} ref={ref}>
+        <Draggable nodeRef={ref} bounds="parent">
+            <div style={{ top: props.appID * 90 - 40 }} onDoubleClick={props.doubleClick} onClick={HighlightIcon} className={styles.icon} ref={ref}>
                 <div>
                     <div className={selected ? styles.iconimage_selected : styles.iconimage}>
                         <img style={{ height: "45px", maxHeight: "45px", maxWidth: "100%" }} src={props.img.src} alt="icon" />

@@ -9,7 +9,7 @@ const Win = (props: { title: string; width: string; children: ReactNode}) => {
     const [isClose, setClose] = useState(false);
     const [currX, setX] = useState(0);
     const [currY, setY] = useState(0);
-    const componentRef = useRef<HTMLDivElement>(null);
+    
     const handleMaximise = () => {
         setMaximised(!isMaximised);
     };
