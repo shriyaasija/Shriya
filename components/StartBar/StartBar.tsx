@@ -7,8 +7,10 @@ import removabledevice from "../../assets/removabledevice.png";
 import StartMenu from "../StartMenu/StartMenu";
 import TrayTab from "../TrayTab/TrayTab";
 import { StaticImageData } from "next/image";
-import { Tab } from "../../src/types";
+import { RootState, Tab } from "../../src/types";
 import { useSelector } from "react-redux";
+import store from "@/redux/store";
+import { minimizeTab, maximizeTab, setFocusedTab } from "@/redux/tabSlice";
 
 const getTime = () => {
     const date = new Date();
@@ -27,34 +29,29 @@ const getTime = () => {
     return `${hour}:${formattedMin} ${hourPostFix}`;
 };
 
-// interface props {
-//     tabList: number[];
-// }
-
-interface RootState {
-    tab: {
-        tray: Tab[];
-    };
-}
-
 const StartBar = () => {
     const [time, setTime] = useState(getTime());
     const ref = useRef<HTMLDivElement>(null);
     const [startMenuOpen, setStartMenuOpen] = useState(false);
-    const [focusedTab, setFocusedTab] = useState<number | null>(null);
     const Tabs = useSelector((state: RootState) => state.tab.tray);
+    const currTabID = useSelector((state: RootState) => state.tab.currentFocusedTab);
 
-    const handleTabFocus = (tabName: number) => {
-        if (focusedTab === tabName) {
-            setFocusedTab(null);
-            return;
-        }
-        setFocusedTab(tabName);
+    const handleTabFocus = (tabID: number) => {
+       console.log("Tab to focus: " + tabID);
+       console.log("Current tab: " + currTabID)
+       if (currTabID == tabID) {
+        store.dispatch(minimizeTab({ id: tabID }));
+        store.dispatch(setFocusedTab({ id: -1 }));
+        return;
+       } else {
+        store.dispatch(maximizeTab({ id: tabID }));
+        store.dispatch(setFocusedTab({ id: tabID }));
+       }
     };
 
-    const renderTabs = (title: String, Icon: StaticImageData, index: number) => {
+    const renderTabs = (title: String, Icon: StaticImageData, id: number) => {
         return (
-            <TrayTab key={index} title={title} Icon={Icon} isFocused={index === focusedTab} onFocus={() => handleTabFocus(index)}/>
+            <TrayTab key={id} title={title} Icon={Icon} isFocused={id === currTabID} onFocus={() => handleTabFocus(id)}/>
         );
     };
     
@@ -93,7 +90,7 @@ const StartBar = () => {
                     {startMenuOpen && <StartMenu menuControl={setStartMenuOpen}/>}
                 </div>
                 <div className={styles.tabbar}>
-                    {Array.from(Tabs).map((_item, index) => renderTabs(_item.title, _item.Icon, index))}
+                    {Tabs.map((_item) => renderTabs(_item.title, _item.Icon, _item.id))}
                 </div>
                 <div className={styles.icontray}>
                     <div className={styles.iconrow}>

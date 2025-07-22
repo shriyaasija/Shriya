@@ -16,16 +16,9 @@ import Win from "../../components/Win/Win";
 import { useState } from "react";
 import store from "@/redux/store";
 import { AppDirectory } from "@/appID";
-import { Tab } from "@/types";
+import { RootState, Tab } from "@/types";
 import { addTab } from "@/redux/tabSlice";
 import { useSelector } from "react-redux";
-
-interface RootState {
-    tab: {
-        tray: Tab[];
-        id: number;
-    };
-}
 
 export default function Home() {
     const Tabs = useSelector((state: RootState) => state.tab.tray);
@@ -66,10 +59,10 @@ export default function Home() {
                 <DesktopIcon appID={3} doubleClick={handleOpenResume} title="Resume" img={pdf} />
                 <DesktopIcon appID={4} doubleClick={handleOpenLinkedin} title="LinkedIn" img={linkedin} />
                 <DesktopIcon appID={5} doubleClick={handleOpenGitHub} title="GitHub" img={github} />
-                <DesktopIcon appID={6} doubleClick={iconClicked} title="Work" img={cmd} />
+                <DesktopIcon appID={6} doubleClick={() => handleRunApp(2)} title="Work" img={cmd} />
                 <DesktopIcon appID={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
                 {Tabs.map((tab, index) => {
-                    return (
+                    return tab.isMinimized ? (<></>) : (
                         <Win key={index} id={tab.id} title={tab.title} width={"500"} icon={tab.Icon}>
                             {"Tab index: " + index}
                         </Win>
