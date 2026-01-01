@@ -57,16 +57,15 @@ const Win = (props: { id: number; title: string; width: string; children: ReactN
 
     return (
         <Draggable {...draggableProps}>
-            <div style={{ position: "absolute", display: isMinimised ? "none" : "inline", width: isMaximised ? "100%" : "500px", height: isMaximised ? "100%": "500px", zIndex: props.zIndex}} className={styles.window}>
+            <div style={{ position: "absolute", display: isMinimised ? "none" : "inline", width: isMaximised ? "100%" : "600px", height: isMaximised ? "100%": "500px", zIndex: props.zIndex}} className={styles.window}>
                 <div 
                     onMouseDown={() => {
                         store.dispatch(setFocusedTab({ id: props.id}));
                     }}
-                    // onClick={() => store.dispatch(setFocusedTab({ id: props.id }))} 
                     className={currTabID == props.id ? styles.titlebar : styles.titlebar_unfocused} >
                     <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center" }} className="handle">
                         <Image width={20} height={20} alt="icon" src={props.icon.src} className={styles.icon} />
-                        <div className={styles.title}>{props.title + " " + props.id}</div>
+                        <div className={styles.title}>{props.title}</div>
                     </div>
                     <div className={styles.titlecontrols}>
                         <div onClick={handleMinimise} style={{ filter: currTabID == props.id ? "" : unfocusedAdjustment, }} className={styles.minimise}/>
@@ -74,7 +73,12 @@ const Win = (props: { id: number; title: string; width: string; children: ReactN
                         <div onClick={handleClose} style={{filter: currTabID == props.id ? "" : unfocusedAdjustment }} className={styles.close} />
                     </div>
                 </div>
-                <div className={currTabID == props.id ? styles.windowborder : styles.windowborder_unfocused}>
+                <div 
+                    onMouseDown={() => {
+                        store.dispatch(setFocusedTab({ id: props.id }));
+                    }} 
+                    className={currTabID == props.id ? styles.windowborder : styles.windowborder_unfocused}
+                >
                     <div className={styles.windowsbody}>
                         <WinToolBar />
                         {props.children}

@@ -29,6 +29,7 @@ import { RootState, Tab } from "@/types";
 import store from "@/redux/store";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 interface StartMenuProps {
   menuControl: React.Dispatch<React.SetStateAction<boolean>>;
 }

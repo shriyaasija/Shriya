@@ -64,7 +64,6 @@
 }
 
 .icon_overlay {
-    z-index: 0;
     position: absolute;
     top: 5px;
     left: 5px;

@@ -35,6 +35,7 @@ const StartBar = () => {
     const [startMenuOpen, setStartMenuOpen] = useState(false);
     const Tabs = useSelector((state: RootState) => state.tab.tray);
     const currTabID = useSelector((state: RootState) => state.tab.currentFocusedTab);
+    const currzIndex = useSelector((state: RootState) => state.tab.currentZIndex)
 
     const handleTabFocus = (tabID: number) => {
        console.log("Tab to focus: " + tabID);
@@ -83,7 +84,7 @@ const StartBar = () => {
     }, [ref]);
 
     return (
-       <div style={{ zIndex: 0 }}>
+       <div style={{ zIndex: currzIndex }}>
             <div className={styles.bluebar}>
                 <div ref={ref}>
                     <div onClick={handleOpenStartMenu} className={startMenuOpen ? styles.startbtn_active : styles.startbtn}></div>
