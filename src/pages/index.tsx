@@ -25,7 +25,7 @@ export default function Home() {
     const currTabID = useSelector((state: RootState) => state.tab.id);
 
     const handleRunApp = (e: number) => {
-        const newTab = {...AppDirectory.get(e), id: currTabID};
+        const newTab = {...AppDirectory.get(e), id: currTabID, zIndex: currTabID};
         store.dispatch(addTab(newTab));
     }
 
@@ -54,20 +54,28 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <DesktopIcon appID={1} doubleClick={iconClicked} title="My Comp" img={internet} />
-                <DesktopIcon appID={2} doubleClick={iconClicked} title="Recycling Bin" img={bin} />
-                <DesktopIcon appID={3} doubleClick={handleOpenResume} title="Resume" img={pdf} />
-                <DesktopIcon appID={4} doubleClick={handleOpenLinkedin} title="LinkedIn" img={linkedin} />
-                <DesktopIcon appID={5} doubleClick={handleOpenGitHub} title="GitHub" img={github} />
-                <DesktopIcon appID={6} doubleClick={() => handleRunApp(2)} title="Work" img={cmd} />
-                <DesktopIcon appID={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
-                {Tabs.map((tab, index) => {
-                    return tab.isMinimized ? (<></>) : (
-                        <Win key={index} id={tab.id} title={tab.title} width={"500"} icon={tab.Icon}>
-                            {"Tab index: " + index}
-                        </Win>
-                    );
-                })}
+                <div
+                    style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                    }}
+                >
+                    <DesktopIcon appID={1} doubleClick={iconClicked} title="My Comp" img={internet} />
+                    <DesktopIcon appID={2} doubleClick={iconClicked} title="Recycling Bin" img={bin} />
+                    <DesktopIcon appID={3} doubleClick={handleOpenResume} title="Resume" img={pdf} />
+                    <DesktopIcon appID={4} doubleClick={handleOpenLinkedin} title="LinkedIn" img={linkedin} />
+                    <DesktopIcon appID={5} doubleClick={handleOpenGitHub} title="GitHub" img={github} />
+                    <DesktopIcon appID={6} doubleClick={() => handleRunApp(2)} title="Work" img={cmd} />
+                    <DesktopIcon appID={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
+                    {Tabs.map((tab, index) => {
+                        return tab.isMinimized ? (<></>) : (
+                            <Win key={index} id={tab.id} title={tab.title} width={"500"} icon={tab.Icon} zIndex={tab.zIndex}>
+                                {"Z index: " + tab.zIndex}
+                            </Win>
+                        );
+                    })}
+                </div>
             </main>
             <StartBar/>
         </>

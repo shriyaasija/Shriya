@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/types";
 
 const unfocusedAdjustment = "brightness(1.05)"
-const Win = (props: { id: number; title: string; width: string; children: ReactNode; icon: StaticImageData}) => {
+const Win = (props: { id: number; title: string; width: string; children: ReactNode; icon: StaticImageData; zIndex: number;}) => {
     const [isMaximised, setMaximised] = useState(false);
     const [isMinimised, setMinimised] = useState(false);
     const [isClose, setClose] = useState(false);
@@ -57,11 +57,16 @@ const Win = (props: { id: number; title: string; width: string; children: ReactN
 
     return (
         <Draggable {...draggableProps}>
-            <div style={{ display: isMinimised ? "none" : "inline", width: isMaximised ? "100%" : "500px", height: isMaximised ? "100%": "500px"}} className={styles.window}>
-                <div onClick={() => store.dispatch(setFocusedTab({ id: props.id }))} className={currTabID == props.id ? styles.titlebar : styles.titlebar_unfocused} >
+            <div style={{ position: "absolute", display: isMinimised ? "none" : "inline", width: isMaximised ? "100%" : "500px", height: isMaximised ? "100%": "500px", zIndex: props.zIndex}} className={styles.window}>
+                <div 
+                    onMouseDown={() => {
+                        store.dispatch(setFocusedTab({ id: props.id}));
+                    }}
+                    // onClick={() => store.dispatch(setFocusedTab({ id: props.id }))} 
+                    className={currTabID == props.id ? styles.titlebar : styles.titlebar_unfocused} >
                     <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center" }} className="handle">
                         <Image width={20} height={20} alt="icon" src={props.icon.src} className={styles.icon} />
-                        <div className={styles.title}>{props.id}</div>
+                        <div className={styles.title}>{props.title + " " + props.id}</div>
                     </div>
                     <div className={styles.titlecontrols}>
                         <div onClick={handleMinimise} style={{ filter: currTabID == props.id ? "" : unfocusedAdjustment, }} className={styles.minimise}/>

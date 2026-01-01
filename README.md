@@ -1,6 +1,6 @@
 ## portfolio website inspired by the windows xp desktop 
 
-build using nextjs, css, and whatever else i end up using
+built with nextjs, css, and whatever else i end up using
 
 ## more information coming soon...
 preview as of 13/7/25

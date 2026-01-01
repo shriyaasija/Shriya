@@ -25,19 +25,12 @@ import defaultprog from "../../assets/defaultprog.png";
 import printerfax from "../../assets/printerfax.png";
 import { AppDirectory } from "@/appID";
 import { addTab } from "@/redux/tabSlice";
-import { Tab } from "@/types";
+import { RootState, Tab } from "@/types";
 import store from "@/redux/store";
 import React from "react";
 import { useSelector } from "react-redux";
 interface StartMenuProps {
   menuControl: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface RootState {
-  tab: {
-    tray: Tab[];
-    id: number;
-  };
 }
 
 const StartMenu = ({ menuControl }: StartMenuProps) => {
@@ -96,7 +89,7 @@ const StartMenu = ({ menuControl }: StartMenuProps) => {
             <StartMenuItem onClick={handleOpenResume} title="Resume" icon={pdf} type={2} />
             <StartMenuItem onClick={handleOpenGitHub} title="Github" icon={github} type={2} />
             <StartMenuItem onClick={handleOpenLinkedIn} title="Linkedin" icon={linkedin} type={2} />
-            <StartMenuItem title="My Work" onClick={() => handleRunApp(6)} icon={cmd} type={2} />
+            <StartMenuItem title="My Work" onClick={() => handleRunApp(2)} icon={cmd} type={2} />
             <StartMenuItem title="My Blog" icon={msn} type={2} />
             <StartMenuItem title="Paint" icon={paint} type={2} />
           </div>
