@@ -80,7 +80,7 @@ const Win = (props: { id: number; title: string; width: string; children: ReactN
                     className={currTabID == props.id ? styles.windowborder : styles.windowborder_unfocused}
                 >
                     <div className={styles.windowsbody}>
-                        <WinToolBar />
+                        <WinToolBar title={props.title} icon={props.icon} />
                         {props.children}
                     </div>
                 </div>

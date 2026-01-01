@@ -19,6 +19,7 @@ import { AppDirectory } from "@/appID";
 import { RootState, Tab } from "@/types";
 import { addTab } from "@/redux/tabSlice";
 import { useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Home() {
     const Tabs = useSelector((state: RootState) => state.tab.tray);
@@ -70,7 +71,7 @@ export default function Home() {
                     <DesktopIcon appID={7} doubleClick={iconClicked} title="Hobbies" img={solitaire} />
                     {Tabs.map((tab, index) => {
                         return tab.isMinimized ? (<></>) : (
-                            <Win key={index} id={tab.id} title={tab.title} width={"500"} icon={tab.Icon} zIndex={tab.zIndex}>
+                            <Win key={tab.id || uuidv4()} id={tab.id} title={tab.title} width={"500"} icon={tab.Icon} zIndex={tab.zIndex}>
                                 {"Z index: " + tab.zIndex}
                             </Win>
                         );

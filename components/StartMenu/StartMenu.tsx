@@ -85,7 +85,7 @@ const StartMenu = ({ menuControl }: StartMenuProps) => {
         <div className={styles.leftmenu}>
           <div>
             <StartMenuItem title="Internet" subtitle="Internet Explorer" icon={ie} type={1} />
-            <StartMenuItem title="Email" subtitle="Outlook" icon={outlook} type={1} />
+            <StartMenuItem title="Email" subtitle="Drop a Message!" icon={outlook} type={1} />
             <hr className={styles.greyhr} />
             <StartMenuItem onClick={handleOpenResume} title="Resume" icon={pdf} type={2} />
             <StartMenuItem onClick={handleOpenGitHub} title="Github" icon={github} type={2} />
